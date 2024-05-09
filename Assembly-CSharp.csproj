@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Camera\Camera.cs" />
-     <Compile Include="Assets\Player\Scripts\Player.cs" />
+     <Compile Include="Assets\Map\Chest\ChestController.cs" />
+     <Compile Include="Assets\Map\Door\DoorController.cs" />
+     <Compile Include="Assets\Player\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
  <Reference Include="UnityEngine.Purchasing">
  <HintPath>C:/Users/Vitor/OneDrive/Documentos/Jogo2D/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
