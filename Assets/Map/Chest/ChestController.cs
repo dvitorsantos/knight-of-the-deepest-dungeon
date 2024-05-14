@@ -53,8 +53,6 @@ public class ChestController : MonoBehaviour
         key = Instantiate(keyPrefab, transform.position, transform.rotation);
         keyRigidBody = key.GetComponent<Rigidbody2D>();
         Vector2 forceDirection = Vector2.down;
-        keyRigidBody.gravityScale = 0;
-        keyRigidBody.drag = 0;
         keyRigidBody.AddForce(forceDirection * 5.0f, ForceMode2D.Impulse);
 
         animator.SetBool("Open", true);

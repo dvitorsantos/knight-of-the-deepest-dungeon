@@ -6,21 +6,25 @@ public class DoorController : MonoBehaviour
 {
     private bool isPlayerNear = false;
     private bool isOpened = false;
+    private bool isKeyPresent = false;
+    public bool isLocked = true;
 
     private Animator animator;
+    public NotificationManager notificationManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isOpened)
-        {
-            Open();
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isOpened && isLocked) {
+            if (isKeyPresent) {
+                Open();
+            } else {
+                notificationManager.ShowNotification("Door is locked.");
+            }
         }
     }
 
@@ -28,6 +32,10 @@ public class DoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+            if (playerInventory.keyCount > 0) {
+                isKeyPresent = true;
+            }
             isPlayerNear = true;
         }
     }
@@ -37,6 +45,7 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
+            isKeyPresent = false;
         }
     }
 
