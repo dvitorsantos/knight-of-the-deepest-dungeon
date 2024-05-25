@@ -6,27 +6,31 @@ public class EnemyController : MonoBehaviour
 {
     public Transform player;
     public float speed = 2f;
-    public float stoppingDistance = 3f;
+    public float stoppingDistance = 1f;
     public float followDistance = 5f;
     public int damage = 10;
-    public int maxHealth = 50;
+    public int maxHealth = 30;
     private int currentHealth;
     public float flashDuration = 0.1f;
     public int flashCount = 3;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rididbody;
-     public float knockbackForce = 10f;
+    private Animator animator;
+    public float knockbackForce = 10f;
+    private float decelerationRate = 15.0f;
 
     void Start()
     {
         currentHealth = maxHealth; // Inicializa a saúde do inimigo
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o SpriteRenderer
         rididbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // Verifica se o jogador foi atribuído
+        rididbody.velocity -= rididbody.velocity.normalized * decelerationRate * Time.deltaTime;
+
         if (player != null)
         {
             // Calcula a distância entre o inimigo e o jogador
@@ -76,8 +80,6 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Enemy Died!");
-        // Adicione aqui a lógica para quando o inimigo morrer (por exemplo, destruir o GameObject do inimigo)
         Destroy(gameObject);
     }
 

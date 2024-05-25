@@ -56,8 +56,10 @@
      <Compile Include="Assets\Camera\Camera.cs" />
      <Compile Include="Assets\Enemy\EnemyController.cs" />
      <Compile Include="Assets\Itens\Key\KeyPickup.cs" />
+     <Compile Include="Assets\Itens\Potions\HealthPotionPickup.cs" />
      <Compile Include="Assets\Map\Chest\ChestController.cs" />
      <Compile Include="Assets\Map\Door\DoorController.cs" />
+     <Compile Include="Assets\Map\Spike\SpikeController.cs" />
      <Compile Include="Assets\Player\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Player\Scripts\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />

@@ -10,4 +10,11 @@ public class PlayerInventory : MonoBehaviour
     {
         keyCount++;
     }
+
+    public void UseKey()
+    {
+        if (keyCount > 0) {
+            keyCount--;
+        }
+    }
 }

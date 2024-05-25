@@ -14,26 +14,32 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
+    public NotificationManager notificationManager;
 
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public int damage = 10;
 
     public float flashDuration = 0.1f; 
     public int flashCount = 3;
     private float attackRadius = 2.0f;
 
+    private bool isDead = false;
+
      void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        notificationManager = FindObjectOfType<NotificationManager>();
 
         currentHealth = maxHealth;
     }
 
     void Update()
     {
+        if (isDead) return;
+        
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -58,7 +64,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false; // Reseta a orientação horizontal do sprite
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
         {
             animator.SetBool("Attacking", true);
         }
@@ -78,7 +84,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Attacking", false);
         attackTimer = 0.0f;
 
-        Debug.Log("Attack");
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackRadius, Vector2.zero);
         foreach (var hit in hits)
         {
@@ -96,11 +101,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Heal() {
+        if (currentHealth < maxHealth) {
+            currentHealth += 20;
+        }
+    }
+
      public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
-        StartCoroutine(FlashDamage());
+        notificationManager.ShowNotification("Life: " + currentHealth + "/" + maxHealth);
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            StartCoroutine(Die());
+        } else {
+            StartCoroutine(FlashDamage());
+        }
+    }
+
+    private IEnumerator Die() {
+        isDead = true;
+        animator.SetTrigger("Dead");
+        rigidbody.bodyType = RigidbodyType2D.Static;
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 
     private IEnumerator FlashDamage()
