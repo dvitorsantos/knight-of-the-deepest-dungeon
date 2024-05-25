@@ -11,10 +11,12 @@ public class DoorController : MonoBehaviour
 
     private Animator animator;
     public NotificationManager notificationManager;
+    private BoxCollider2D collider;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -28,11 +30,12 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log("Collision Door!");
+        if (other.gameObject.CompareTag("Player"))
         {
-            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+            PlayerInventory playerInventory = other.gameObject.GetComponent<PlayerInventory>();
             if (playerInventory.keyCount > 0) {
                 isKeyPresent = true;
             }
@@ -40,9 +43,9 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnCollisionExit2D (Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             isPlayerNear = false;
             isKeyPresent = false;
@@ -52,5 +55,6 @@ public class DoorController : MonoBehaviour
     void Open() {
         animator.SetBool("Open", true);
         isOpened = true;
+        collider.enabled = false;
     }
 }

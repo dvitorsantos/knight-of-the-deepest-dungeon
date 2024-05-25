@@ -15,11 +15,21 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
 
+    public int maxHealth = 100;
+    private int currentHealth;
+    public int damage = 10;
+
+    public float flashDuration = 0.1f; 
+    public int flashCount = 3;
+    private float attackRadius = 2.0f;
+
      void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -67,5 +77,48 @@ public class PlayerController : MonoBehaviour
         attacking = true;
         animator.SetBool("Attacking", false);
         attackTimer = 0.0f;
+
+        Debug.Log("Attack");
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackRadius, Vector2.zero);
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+            {
+                Vector2 knockbackDirection = (hit.transform.position - transform.position).normalized;
+
+                // Aplica dano ao inimigo
+                EnemyController enemyHealth = hit.collider.GetComponent<EnemyController>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(damage, knockbackDirection);
+                }
+            }
+        }
+    }
+
+     public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        StartCoroutine(FlashDamage());
+    }
+
+    private IEnumerator FlashDamage()
+    {
+        Color originalColor = spriteRenderer.color; // Armazena a cor original do sprite
+
+        for (int i = 0; i < flashCount; i++)
+        {
+            // Altera a cor do sprite para vermelho
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(flashDuration); // Aguarda pela duração do flash
+
+            // Altera a cor do sprite para branco
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(flashDuration); // Aguarda pela duração do flash
+        }
+
+        // Retorna a cor original do sprite
+        spriteRenderer.color = originalColor;
     }
 }
