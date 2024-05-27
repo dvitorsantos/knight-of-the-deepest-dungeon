@@ -104,6 +104,9 @@ public class PlayerController : MonoBehaviour
     public void Heal() {
         if (currentHealth < maxHealth) {
             currentHealth += 20;
+            if (currentHealth > maxHealth) {
+                currentHealth = maxHealth;
+            }
         }
     }
 
