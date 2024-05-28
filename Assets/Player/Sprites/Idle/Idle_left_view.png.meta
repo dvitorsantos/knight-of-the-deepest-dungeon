@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: dc549064a83e8f04d90960abd93eb131
+guid: 20a9c86103d0540498d74bb4e90d86c1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Atack_back_view_0
-    21300002: Atack_back_view_1
-    21300004: Atack_back_view_2
-    21300006: Atack_back_view_3
+    21300000: Idle_left_view_0
+    21300002: Idle_left_view_1
+    21300004: Idle_left_view_2
+    21300006: Idle_left_view_3
+    21300008: Idle_left_view_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -77,7 +78,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atack_back_view_0
+      name: Idle_left_view_0
       rect:
         serializedVersion: 2
         x: 0
@@ -91,13 +92,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06c53d704e5316d4586e0d4a46d712ca
+      spriteID: 92e1ab55329a57c4fb42dc0652eda8bd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_1
+      name: Idle_left_view_1
       rect:
         serializedVersion: 2
         x: 32
@@ -111,13 +112,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3f0388f9f2ebc4b9950159b076f23e
+      spriteID: 0a92be68f3e2ccc48914ecb81c6eea95
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_2
+      name: Idle_left_view_2
       rect:
         serializedVersion: 2
         x: 64
@@ -131,13 +132,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d98276ddbf83ccf499434265e1e840ed
+      spriteID: 32d767f14f2fdba4994a4f62f937ab36
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_3
+      name: Idle_left_view_3
       rect:
         serializedVersion: 2
         x: 96
@@ -151,7 +152,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ededebf818147a4bb2829793dd3b399
+      spriteID: 060857ff42c4f9142b5104a1e14aff92
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_left_view_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e361c0795e8bbcb43bfc027a9ebd36f3
       vertices: []
       indices: 
       edges: []
@@ -159,7 +180,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6618e00c2c0210a448fe4913903ffdef
+    spriteID: 6dfbcf2ade491e944bcd86c5eeae01b4
     vertices: []
     indices: 
     edges: []

@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isDead = false;
 
-     void Start()
+    void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
@@ -49,20 +49,9 @@ public class PlayerController : MonoBehaviour
 
         rigidbody.velocity = movement * moveSpeed;
 
-        if (moveHorizontal != 0 || moveVertical != 0) {
-            animator.SetBool("Running", true);
-        } else {
-            animator.SetBool("Running", false);
-        }
-
-         if (moveHorizontal < 0)
-        {
-            spriteRenderer.flipX = true; // Inverte o sprite horizontalmente
-        }
-        else if (moveHorizontal > 0)
-        {
-            spriteRenderer.flipX = false; // Reseta a orientação horizontal do sprite
-        }
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
         if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
         {
@@ -71,11 +60,11 @@ public class PlayerController : MonoBehaviour
 
         if (animator.GetBool("Attacking") == true) {
        
-             attackTimer += Time.deltaTime;
+            attackTimer += Time.deltaTime;
           
-             if (attackTimer >= attackSpeed) {
+            if (attackTimer >= attackSpeed) {
                 Attack();
-             }
+            }
         }
     }
 
@@ -129,7 +118,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Dead");
         rigidbody.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(3f);
-        Destroy(gameObject);
     }
 
     private IEnumerator FlashDamage()

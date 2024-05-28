@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: dc549064a83e8f04d90960abd93eb131
+guid: 5b0c556b4f7a8644697575869d84b89a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Atack_back_view_0
-    21300002: Atack_back_view_1
-    21300004: Atack_back_view_2
-    21300006: Atack_back_view_3
+    21300000: Atack_left_view_0
+    21300002: Atack_left_view_1
+    21300004: Atack_left_view_2
+    21300006: Atack_left_view_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atack_back_view_0
+      name: Atack_left_view_0
       rect:
         serializedVersion: 2
         x: 0
@@ -91,13 +91,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06c53d704e5316d4586e0d4a46d712ca
+      spriteID: f108eb4e1977d41478178f5002177dea
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_1
+      name: Atack_left_view_1
       rect:
         serializedVersion: 2
         x: 32
@@ -111,13 +111,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3f0388f9f2ebc4b9950159b076f23e
+      spriteID: e6eea992161b9c94c9340c0f89b10a2c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_2
+      name: Atack_left_view_2
       rect:
         serializedVersion: 2
         x: 64
@@ -131,13 +131,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d98276ddbf83ccf499434265e1e840ed
+      spriteID: 4eb2ba6055a52f64089af186d966f80f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atack_back_view_3
+      name: Atack_left_view_3
       rect:
         serializedVersion: 2
         x: 96
@@ -151,7 +151,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ededebf818147a4bb2829793dd3b399
+      spriteID: 7b6db7b7926a69b4e9fc37fcff35ee7f
       vertices: []
       indices: 
       edges: []
@@ -159,7 +159,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6618e00c2c0210a448fe4913903ffdef
+    spriteID: 5b0db574dc916784a8faee3868d05b6e
     vertices: []
     indices: 
     edges: []
