@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float flashDuration = 0.1f; 
     public int flashCount = 3;
     private float attackRadius = 2.0f;
+    
 
     private bool isDead = false;
 
@@ -49,11 +50,17 @@ public class PlayerController : MonoBehaviour
 
         rigidbody.velocity = movement * moveSpeed;
 
+        if (movement.magnitude > 0.1f) {
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
+        }
+
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
+      
+        if ((Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0)) && attackTimer <= attackSpeed)
         {
             animator.SetBool("Attacking", true);
         }
