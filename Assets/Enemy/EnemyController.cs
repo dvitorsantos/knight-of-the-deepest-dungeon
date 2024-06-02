@@ -6,43 +6,40 @@ public class EnemyController : MonoBehaviour
 {
     public Transform player;
     public float speed = 2f;
-    public float stoppingDistance = 1f;
-    public float followDistance = 5f;
+    public float stoppingDistance = 0.25f;
+    public float followDistance = 7f;
     public int damage = 10;
     public int maxHealth = 30;
     private int currentHealth;
     public float flashDuration = 0.1f;
     public int flashCount = 3;
     private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rididbody;
+    private Rigidbody2D rigidbody;
     private Animator animator;
     public float knockbackForce = 10f;
     private float decelerationRate = 15.0f;
+    private bool isDead = false;
 
     void Start()
     {
-        currentHealth = maxHealth; // Inicializa a saúde do inimigo
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o SpriteRenderer
-        rididbody = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        rididbody.velocity -= rididbody.velocity.normalized * decelerationRate * Time.deltaTime;
+        rigidbody.velocity -= rigidbody.velocity.normalized * decelerationRate * Time.deltaTime;
 
-        if (player != null)
+        if (player != null && !isDead)
         {
-            // Calcula a distância entre o inimigo e o jogador
             float distance = Vector2.Distance(transform.position, player.position);
 
-            // Verifica se a distância está dentro do alcance de seguir e fora do alcance de parar
             if (distance < followDistance && distance > stoppingDistance)
             {
-                // Calcula a direção do inimigo para o jogador
                 Vector2 direction = (player.position - transform.position).normalized;
 
-                // Move o inimigo
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             }
         }
@@ -63,23 +60,25 @@ public class EnemyController : MonoBehaviour
 
      public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
-        currentHealth -= damage; // Reduz a saúde do inimigo
+        currentHealth -= damage;
 
-        rididbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        rigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
-        // Verifica se o inimigo morreu
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
         else
         {
-            StartCoroutine(FlashDamage()); // Inicia a animação de dano
+            StartCoroutine(FlashDamage());
         }
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
+        animator.SetBool("Dead", true);
+        isDead = true;
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 

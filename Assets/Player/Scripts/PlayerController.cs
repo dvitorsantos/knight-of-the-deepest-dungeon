@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 knockbackDirection = (hit.transform.position - transform.position).normalized;
 
-                // Aplica dano ao inimigo
                 EnemyController enemyHealth = hit.collider.GetComponent<EnemyController>();
                 if (enemyHealth != null)
                 {
@@ -129,20 +128,16 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator FlashDamage()
     {
-        Color originalColor = spriteRenderer.color; // Armazena a cor original do sprite
+        Color originalColor = spriteRenderer.color;
 
         for (int i = 0; i < flashCount; i++)
         {
-            // Altera a cor do sprite para vermelho
             spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(flashDuration); // Aguarda pela duração do flash
-
-            // Altera a cor do sprite para branco
+            yield return new WaitForSeconds(flashDuration);
             spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(flashDuration); // Aguarda pela duração do flash
+            yield return new WaitForSeconds(flashDuration);
         }
 
-        // Retorna a cor original do sprite
         spriteRenderer.color = originalColor;
     }
 }
