@@ -1,2 +1,6 @@
 Library/CurrentLayout.dwlt
 Library/CurrentMaximizeLayout.dwlt
+
+.vsconfig
+.vs/
+.sln
